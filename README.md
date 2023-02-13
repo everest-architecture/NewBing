@@ -13,7 +13,7 @@
 
 ## Install
 ### Windows
-- [.msi](.msi)
+- [NewBing_0.0.1_x64_en-US.msi](https://github.com/everest-architecture/NewBing/releases/download/v0.0.1/NewBing_0.0.1_x64_en-US.msi)
 
 ### Mac
 
