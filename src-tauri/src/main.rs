@@ -5,11 +5,13 @@
 
 mod app;
 
+use app::{menu};
+
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 
 #[tauri::command]
 async fn create_window(app: tauri::AppHandle) {
-  tauri::WindowBuilder::new(&app, "label", tauri::WindowUrl::External("https://bing.com/".parse().unwrap()))
+  tauri::WindowBuilder::new(&app, "label", tauri::WindowUrl::External("https://bing.com/new".parse().unwrap()))
     .build()
     .unwrap();
 }
@@ -18,12 +20,14 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![create_window])
         .setup(|app| {
-            let window = tauri::WindowBuilder::new(app, "label", tauri::WindowUrl::External("https://bing.com/".parse().unwrap()))
+            let window = tauri::WindowBuilder::new(app, "label", tauri::WindowUrl::External("https://bing.com/new".parse().unwrap()))
             .title("Microsoft Bing")
             .build()
             .unwrap();
             Ok(())
           })
+        .menu(menu::init())
+        .on_menu_event(menu::menu_handler)
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
